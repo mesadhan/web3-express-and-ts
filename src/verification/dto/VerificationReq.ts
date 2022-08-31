@@ -1,4 +1,4 @@
-interface VerificationReq{
+export interface VerificationReq{
   account:string,
   signature:string
 }

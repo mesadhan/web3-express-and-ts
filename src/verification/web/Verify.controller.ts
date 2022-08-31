@@ -1,22 +1,26 @@
-import {Request, response, Response, Router} from "express";
 import {VerifyService} from "./Verify.service";
 import {StatusCodes} from "http-status-codes";
+import {Request, Response, Router} from "express";
+import {VerificationReq} from "../dto/VerificationReq";
+import {VerificationRes} from "../dto/VerificationRes";
+import {Method} from "../../common/Method.enum";
+import {SRouter, SRequestMapping} from "../../common/SRequestMapping";
 
 
-const verifyController:Router = Router()
-const verifyService:VerifyService = new VerifyService();
+let verifyService: VerifyService = new VerifyService();
 
 
+export class VerifyController {
+
+  @SRequestMapping({method: Method.POST, name: "/signature"})
+  public verifyWalletInfo(req: Request, res: Response) {
+
+    let body: VerificationReq = req.body;
+    let data: VerificationRes = verifyService.verifyChecker(body);
+    res.status(StatusCodes.OK).json(data)
+
+  }
+}
 
 
-//Get all news
-verifyController.post('/signature', async (req: Request, res: Response) => {
-
-  let data = verifyService.verifyChecker(req,res);
-  res.status(StatusCodes.OK).json(data)
-})
-
-
-
-
-export default verifyController;
+export default SRouter;

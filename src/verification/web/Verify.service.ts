@@ -1,10 +1,8 @@
-import {Request, Response} from "express";
-import {StatusCodes} from "http-status-codes";
+import {VerificationReq} from "../dto/VerificationReq";
 
 export class VerifyService {
 
-  verifyChecker(req: Request, res: Response) {
-
+  verifyChecker(body:VerificationReq) {
     // need to add login here....
 
     return {verified: true}

@@ -21,3 +21,7 @@ echo "console.log('Hello World\!\!\!')" > src/app.ts
 ```
 
     yarn add express @types/express
+
+
+- https://d0whc3r.github.io/typescript-rest/
+- https://rsbh.dev/blog/rest-api-express-typescript-jest-testing
