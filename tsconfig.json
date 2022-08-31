@@ -1,5 +1,5 @@
 {
-  "include": ["./.env.prod", "package.json", "src", "public"],
+  "include": ["package.json", "src", "public"],
   "exclude": ["node_modules","build"],
   "compilerOptions": {
 

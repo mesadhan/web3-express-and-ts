@@ -30,5 +30,3 @@ export const appConfig = ():Application => {
   return expressApplicationConfig;
 }
 
-
-// export default appConfig;

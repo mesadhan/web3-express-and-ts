@@ -14,6 +14,5 @@ test("should return true", async () => {
     signature: ''
   }
   let response:VerificationRes = controller.verifyChecker(body)
-  console.log('msg', response);
   expect(response?.verified).toBe(true);
 });
