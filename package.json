@@ -25,10 +25,11 @@
     "test": "NODE_ENV=test jest",
     "testc": "NODE_ENV=test jest --coverage",
     "test:watch": "NODE_ENV=test jest --watch",
-    "copy:assets": "copyfiles --error --up 1 public build",
-    "copy:env": "copyfiles --error --up 1 .env.prod build/.env",
-    "copy:libs": "copyfiles --error --up 1 package.json build/package.json",
-    "build": "tsc | yarn run rename",
+
+    "copy:assets": "copyfiles --up 1 public/* build/",
+    "copy:env": "copyfiles --up 1 .env.prod build/.env",
+    "copy:libs": "copyfiles --up 1 package.json build/package.json",
+    "build": "tsc",
     "prod": "node src/server.js"
   },
   "devDependencies": {
