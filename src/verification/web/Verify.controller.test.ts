@@ -1,36 +1,33 @@
 import request from 'supertest'
 import {StatusCodes} from "http-status-codes";
-import {Application, raw} from "express";
-import appServerConfig from "../../ApiGateway";
+import apiGateway from "../../ApiGateway";
 
-
-const appServer:Application = appServerConfig;
-const PROTOCOL:string = process.env.PROTOCOL || 'http'
-const HOSTNAME:string = process.env.HOSTNAME || 'localhost'
-const PORT:string = process.env.PORT || '7004'
-
-const testServer = appServer.listen(PORT, async () => {
-  console.log( `Server running at ${PROTOCOL}://${HOSTNAME}:${PORT}` )
-})
 
 beforeAll(async () => {
 
 })
 
-describe('GET /api/v1/verification', () => {
+afterAll(async () => {
 
-  it("should return 200 & valid response", (done) => {
+})
 
-    request(testServer)
+
+// group test using describe
+describe("POST /api/v1/verification", () => {
+
+
+  it("returns status code 200 if verify is true", async () => {
+    const res = await request(apiGateway)
     .post(`/api/v1/verification/signature`)
-    //.expect('Content-Type', /json/)
-    .expect(StatusCodes.OK).end((err, res) => {
+    .send({ account:"string", signature:"string"} );    // params or body
 
-      if (err) return done(err)
-      expect(res.body).toMatchObject({"verified": true})
-      done()
-
-    });
+    // console.log('res.body', res.body);
+    expect(res.body).toMatchObject({"verified": true})
+    expect(res.statusCode).toEqual(StatusCodes.OK);
   });
 
+  // it("returns status code 200 if verify is false", async () => {
+  //   const res = await request(apiGateway).post("/api/v1/verification"").send();
+  //   expect(res.statusCode).toEqual(201);
+  // });
 });

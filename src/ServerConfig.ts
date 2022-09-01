@@ -11,7 +11,7 @@ import {SLogger} from "./common/SLogger";
 
 export const serverConfig = ():Application => {
 
-  const expressApplicationConfig: Application = express()
+  const serverConfiguration: Application = express()
 
   const envFilePath: string = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env'
   // console.log(`Active envFilePath: ${envFilePath}`);
@@ -20,17 +20,16 @@ export const serverConfig = ():Application => {
   dotenv.config({path: path.resolve(__dirname, envFilePath)})
 
 
-  expressApplicationConfig.use(cors())
-  expressApplicationConfig.use(express.json()) //Used to parse JSON bodies
-  expressApplicationConfig.use(express.urlencoded({extended: true}))
-  expressApplicationConfig.use(cookieParser())
+  serverConfiguration.use(cors())
+  serverConfiguration.use(express.json()) //Used to parse JSON bodies
+  serverConfiguration.use(express.urlencoded({extended: true}))
+  serverConfiguration.use(cookieParser())
 
 
   // middleware
-  expressApplicationConfig.use(loggerMiddleware);
+  serverConfiguration.use(loggerMiddleware);
   // app.use(trim)
 
 
-  return expressApplicationConfig;
+  return serverConfiguration;
 }
-

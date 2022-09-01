@@ -9,7 +9,7 @@ const HOSTNAME:string = process.env.HOSTNAME || 'localhost'
 const PORT:string = process.env.PORT || '7001'
 
 
-appServer.listen(PORT, async () => {
+appServer.listen(PORT,  ():void => {
   // console.log( `Server running at ${PROTOCOL}://${HOSTNAME}:${PORT}` )
   SLogger.logf(__filename).info(`Server running at ${PROTOCOL}://${HOSTNAME}:${PORT}` )
 })

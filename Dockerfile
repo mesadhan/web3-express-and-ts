@@ -21,6 +21,14 @@ CMD ["node", "src/Server.js"]
 
 
 
+
+
+
+
+
+
+
+
 # Build JavaScript from TypeScript
 #RUN NODE_OPTIONS=--max-old-space-size=8192 yarn build
 #CMD [ "node", "-r", "tsconfig-paths/register", "src/app.js" ]

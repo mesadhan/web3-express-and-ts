@@ -20,11 +20,11 @@
     "winston": "^3.8.1"
   },
   "scripts": {
-    "start": "NODE_ENV=dev nodemon src/Server.ts",
-    "dev": "NODE_ENV=dev ts-node src/Server.ts",
-    "test": "NODE_ENV=test jest",
-    "testc": "NODE_ENV=test jest --coverage",
-    "test:watch": "NODE_ENV=test jest --watch",
+    "start": "NODE_ENV=dev nodemon src/AppServer.ts",
+    "dev": "NODE_ENV=dev ts-node src/AppServer.ts",
+    "test": "NODE_ENV=test jest --silent",
+    "testc": "NODE_ENV=test jest --silent --coverage",
+    "test:watch": "NODE_ENV=test jest --silent --watch",
 
 
     "clean": "rimraf build",
