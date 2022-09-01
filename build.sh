@@ -1,2 +1,2 @@
-docker build -t web3_app .
-docker run -d -it -p 7000:8080 --name=app1 web3_app
+docker build -t mesadhan/web3_app:1.0.0 .
+docker run --name web3_app -dp  8080:7001 mesadhan/web3_app:1.0.0
