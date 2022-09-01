@@ -1,27 +1,24 @@
-# base for our image, based on buildpack-deps, based on Debian Linux
-FROM node:lts
+# syntax=docker/dockerfile:1
+FROM node:16.10.0-alpine
+#FROM node:lts
 
-# Create app directory
-WORKDIR /opt/backend
+WORKDIR /opt/app
 
-# COPY BUILD FILES
-COPY build/ build/
-RUN ls -la /files/*
+ADD build .
+ADD package.json .
+ADD .env.prod/ .env
+RUN ls -la
 
 
-
-# Install app dependencies
-COPY package.json ./
-COPY .env.prod ./.env
-#COPY yarn.lock ./
 RUN yarn install
+#RUN yarn install --production
+
+# application runing port mapping
+EXPOSE 7001
+CMD ["node", "src/Server.js"]
+
+
 
 # Build JavaScript from TypeScript
-
-RUN NODE_OPTIONS=--max-old-space-size=8192 yarn build
-
-# Tell docker which port will be used (not published)
-EXPOSE 7000
-
-# Default env file
-CMD [ "node", "-r", "tsconfig-paths/register", "bin/app.js" ]
+#RUN NODE_OPTIONS=--max-old-space-size=8192 yarn build
+#CMD [ "node", "-r", "tsconfig-paths/register", "src/app.js" ]

@@ -23,5 +23,10 @@ echo "console.log('Hello World\!\!\!')" > src/app.ts
     yarn add express @types/express
 
 
+# Docker Build Guide
+
+docker run -dp 3000:3000 getting-started
+
+
 - https://d0whc3r.github.io/typescript-rest/
 - https://rsbh.dev/blog/rest-api-express-typescript-jest-testing
