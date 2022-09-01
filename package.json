@@ -29,7 +29,7 @@
 
     "clean": "rimraf build",
     "build": "yarn clean && tsc",
-    "prod": "node src/server.js"
+    "prod": "node src/AppServer.js"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3",

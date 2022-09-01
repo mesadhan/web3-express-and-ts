@@ -17,7 +17,7 @@ RUN yarn install
 
 # application runing port mapping
 EXPOSE 7001
-CMD ["node", "src/Server.js"]
+CMD ["node", "src/AppServer.js"]
 
 
 
