@@ -25,8 +25,10 @@ echo "console.log('Hello World\!\!\!')" > src/app.ts
 
 # Docker Build Guide
 
-docker run -dp 3000:3000 getting-started
-
+```
+docker build -t mesadhan/web3_app:1.0.0 .
+docker run -dp 8080:7001 mesadhan/web3_app:1.0.0
+```
 
 - https://d0whc3r.github.io/typescript-rest/
 - https://rsbh.dev/blog/rest-api-express-typescript-jest-testing
