@@ -6,7 +6,20 @@
 - Integrated Custom Logger
 - Integrated Docker build script
 
+# Run & Development and Test
+
+```
+yarn install
+yarn start
+yarn test
+```
+
 # Docker Build Guide
+
+Automation, just run this `deploy.sh` command  
+
+
+Manually Build Guide
 
 ```
 docker build -t mesadhan/web3_app:1.0.0 .

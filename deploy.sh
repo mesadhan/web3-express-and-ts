@@ -1,5 +1,11 @@
-echo "******** build process started ********"
+echo "******** Run all the test cases ********"
+yarn test
+
+
+echo "\n******** build this application for production  ********"
 yarn build
+
+
 
 # Cleanup old container & image
 echo "\n******** Cleanup old container & image ********"
