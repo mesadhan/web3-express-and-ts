@@ -5,8 +5,10 @@ FROM node:16.10.0-alpine
 WORKDIR /opt/app
 
 ADD build .
+ADD public .
 ADD package.json .
 ADD .env.prod/ .env
+RUN mkdir uploads
 RUN ls -la
 
 

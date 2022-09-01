@@ -1,34 +1,54 @@
-// {
-//   error: 0,
-//   warn: 1,
-//   info: 2,
-//   http: 3
-//   verbose: 4,
-//   debug: 5,
-//   silly: 6
-// }
-
 import winston, {Logger} from "winston";
 import {Format} from "logform";
 
-const prettyJson:Format = winston.format.printf(info => {
-  if (info.message.constructor === Object) {
-    info.message = JSON.stringify(info.message, null, 4)
+
+const {transports, format, createLogger} = winston
+const {combine, printf} = format
+
+
+const prettyJson: Format = printf(data => {
+  let {timestamp, label, level, message, context, ...args} = data;
+
+  if (message.constructor === Object) {
+    message = JSON.stringify(message, null, 4)
   }
-  return `${info.timestamp} ${info.label || '-'} ${info.level}: ${info.message}`
+
+  message = `${timestamp} ${level} ${label || '-'} ${message}`
+  // message = `${timestamp} ${level} ${label || '-'}:10 ${message}`  // filename:(10 error.stack)
+  return message;
 })
 
-const logger:Logger = winston.createLogger({
-  format: winston.format.combine(
-      winston.format.colorize(),
-      winston.format.prettyPrint(),
-      winston.format.splat(),
-      winston.format.simple(),
-      winston.format.timestamp({format: 'YYYY-MM-DD HH:mm:ss.SSS'}),
-      prettyJson
-  ),
-  defaultMeta: {service: 'web3-express-and-ts'},
-  transports: [new winston.transports.Console({})]
-})
 
-export default logger
+
+export const logger = (filename?: string): Logger => {
+  let shortPath = filename ?? '';
+  if (shortPath) {
+    shortPath = shortPath.substring(shortPath.lastIndexOf("/src") + 1, shortPath.length);
+  }
+
+  return createLogger({
+    level: process.env.WINSTON_LOGGING ?? 'info',
+    exitOnError: false,
+    format: combine(
+        winston.format.label({label: shortPath}),
+        format.colorize(),
+        format.prettyPrint(),
+
+        // format.splat(),
+        // format.simple(),
+        // format.ms(),
+        // format.metadata({fillExcept: ['message', 'level', 'timestamp', 'label']}),
+        format.align(),
+        format.timestamp({format: 'YYYY-MM-DD HH:mm:ss.SSS'}),
+        prettyJson
+    ),
+    defaultMeta: {service: 'web3-express-and-ts'},
+    transports: [
+      new transports.Console({level: 'debug'}),
+      new transports.File({
+        level: 'info',
+        handleExceptions: true, filename: "logs/app.log"
+      }),
+    ],
+  });
+}

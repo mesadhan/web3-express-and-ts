@@ -1,13 +1,14 @@
 import {Request, Response, Router} from "express";
 import {RequestParam} from "./RequestParam";
 import {Method} from "./Method.enum";
+import {SLogger} from "./SLogger";
 
 const SRouter: Router = Router()
 
 
 const SRequestMapping: Function = (params: RequestParam) => {
   return (target: object, memberName: string, propDes: PropertyDescriptor) => {
-    console.log('init-request-mapper', params);
+    // console.log('init-request-mapper', params);
 
     let path: string = params.name;
 
@@ -28,7 +29,7 @@ const SRequestMapping: Function = (params: RequestParam) => {
         SRouter.put(path, async (req: Request, res: Response) => propDes.value(req, res));
         break;
       default:
-        console.log('msg', '')
+        SLogger.log.warn(`NO Request mapping found`)
     }
 
     // console.logName', path);

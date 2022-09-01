@@ -1,5 +1,6 @@
 import appServerConfig from "./ApiGateway";
 import {Application} from "express";
+import {SLogger} from "./common/SLogger";
 
 const appServer:Application = appServerConfig;
 
@@ -9,5 +10,6 @@ const PORT:string = process.env.PORT || '7001'
 
 
 appServer.listen(PORT, async () => {
-  console.log( `Server running at ${PROTOCOL}://${HOSTNAME}:${PORT}` )
+  // console.log( `Server running at ${PROTOCOL}://${HOSTNAME}:${PORT}` )
+  SLogger.logf(__filename).info(`Server running at ${PROTOCOL}://${HOSTNAME}:${PORT}` )
 })
