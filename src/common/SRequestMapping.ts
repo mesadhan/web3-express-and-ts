@@ -7,7 +7,7 @@ const SRouter: Router = Router()
 
 const SRequestMapping: Function = (params: RequestParam) => {
   return (target: object, memberName: string, propDes: PropertyDescriptor) => {
-    console.log('msg-method', params);
+    console.log('init-request-mapper', params);
 
     let path: string = params.name;
 
