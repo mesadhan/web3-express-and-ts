@@ -4,10 +4,10 @@ import {StatusCodes} from "http-status-codes";
 import verifyController from "./verification/web/Verify.controller";
 import fileUpload from "express-fileupload";
 import path from "path";
-import {appConfig} from "./AppConfig";
+import {serverConfig} from "./ServerConfig";
 
 
-const apiGateway: Application = appConfig()
+const apiGateway: Application = serverConfig()
 
 
 const BASE_UPLOAD_ROUTE_URL: string = process.env.BASE_UPLOAD_ROUTE_URL || '/uploads'

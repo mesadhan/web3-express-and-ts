@@ -4,10 +4,11 @@ import dotenv from "dotenv";
 import express, {Application} from 'express'
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import {loggerMiddleware} from "./middleware/loggerMiddleware";
+import {loggerMiddleware} from "./middleware/LoggerMiddleware";
 
 
-export const appConfig = ():Application => {
+
+export const serverConfig = ():Application => {
 
   const expressApplicationConfig: Application = express()
 
