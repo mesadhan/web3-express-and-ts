@@ -6,6 +6,7 @@ WORKDIR /opt/app
 
 ADD build .
 ADD public .
+ADD tsconfig.json .
 ADD package.json .
 ADD .env.prod/ .env
 RUN mkdir uploads
@@ -17,8 +18,8 @@ RUN yarn install
 
 # application runing port mapping
 EXPOSE 7001
-CMD ["node", "src/AppServer.js"]
-
+#CMD ["node", "src/AppServer.js"]
+CMD [ "node", "-r", "tsconfig-paths/register", "src/AppServer.js"]
 
 
 
