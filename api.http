@@ -3,10 +3,8 @@
 POST http://localhost:7001/api/v1/verification/signature
 Content-Type: application/json
 
-{
-  "account":"0x42cfa96d0759aea866a4e73cfa521c15854508d5",
-  "signature":"0xe11369ec5377a303301ddf1bc99554a36101f445e0ed5be6c4da7e0cf8503e920f494bc0e6be0a13273c86ab1e3f198f78d8377fba0a56d35059ccb6de34ab6d1b"
-}
+{"account":"0x42cfa96d0759aea866a4e73cfa521c15854508d5","signature":"0xe11369ec5377a303301ddf1bc99554a36101f445e0ed5be6c4da7e0cf8503e920f494bc0e6be0a13273c86ab1e3f198f78d8377fba0a56d35059ccb6de34ab6d1b"}
+
 
 ### Production API
 
